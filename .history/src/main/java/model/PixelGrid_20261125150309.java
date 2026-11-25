@@ -1,0 +1,19 @@
+package model;
+
+import java.util.Arrays;
+
+public class PixelGrid {
+    public final int size;
+    private final int[][] pixels;
+}
+
+    public PixelGrid(int size) {
+        this.size = size;
+        private final int[][] pixels;
+
+    }
+
+    public PixelGrid(int size) {
+        this.size = size;
+        this.pixels = new int[size][size];
+    }
