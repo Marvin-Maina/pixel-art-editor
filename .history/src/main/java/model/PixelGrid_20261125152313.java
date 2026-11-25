@@ -1,0 +1,56 @@
+package model;
+
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Deque;
+
+public class PixelGrid {
+    public static final int BLANK = 0xFFFFFFFF; // opaque white
+
+    public final int size;
+    private final int[][] pixels;
+
+    public PixelGrid(int size) {
+        this.size = size;
+        this.pixels = new int[size][size];
+        clear();
+    }
+
+    public void clear() {
+        for (int[] row : pixels) Arrays.fill(row, BLANK);
+    }
+
+    public int get(int x, int y) {
+        return pixels[y][x];
+    }
+
+    public void set(int x, int y, int argb) {
+        if (inBounds(x, y)) pixels[y][x] = argb;
+    }
+
+    public boolean inBounds(int x, int y) {
+        return x >= 0 && y >= 0 && x < size && y < size;
+    }
+
+    /** Replaces the connected region of same-coloured cells around (sx, sy). */
+    public void floodFill(int sx, int sy, int newColor) {
+        if (!inBounds(sx, sy)) return;
+        int target = get(sx, sy);
+        if (target == newColor) return;      // without this, the loop never ends
+
+        Deque<int[]> queue = new ArrayDeque<>();
+        queue.add(new int[]{sx, sy});
+
+        while (!queue.isEmpty()) {
+            int[] p = queue.poll();
+            int x = p[0], y = p[1];
+            if (!inBounds(x, y) || get(x, y) != target) continue;
+
+            set(x, y, newColor);
+            queue.add(new int[]{x + 1, y});
+            queue.add(new int[]{x - 1, y});
+            queue.add(new int[]{x, y + 1});
+            queue.add(new int[]{x, y - 1});
+        }
+    }
+}

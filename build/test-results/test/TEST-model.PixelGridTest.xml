@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="model.PixelGridTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-25T13:26:53.283Z" hostname="DESKTOP-2KU5IEP" time="0.048">
+  <properties/>
+  <testcase name="fillStopsAtWalls()" classname="model.PixelGridTest" time="0.048"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
